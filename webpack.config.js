@@ -4,7 +4,7 @@ var CWD = process.cwd();
 
 module.exports = {
     entry: {
-        index: './src/index.jsx',
+        index: './src/index',
         vendor: ['react', 'react-dom']
     },
     output: {
@@ -14,22 +14,20 @@ module.exports = {
     },
     module: {
         loaders: [
-            {test: /\.(js|jsx)$/, exclude: /node_modules/, loader: 'babel'}
-        ],
-        noParse: [/\/react\//]
+            {test: /\.(js|jsx)$/, exclude: /node_modules/, loader: 'babel'},
+            {test: /\.scss$/, exclude: /node_modules/, loaders: [] }
+        ]
     },
     plugins: [
         new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
         new webpack.HotModuleReplacementPlugin()
     ],
     resolve: {
-        alias: {
-            'react': path.resolve('node_modules/react/dist/react.min.js'),
-            'react-dom': path.resolve('node_modules/react-dom/dist/react-dom.min.js')
-        }
+        extensions: ['', '.js', '.jsx']
     },
     devServer:{
         inline: true,
         hot: true
-    }
+    },
+    // devTools: 'source-map'
 }
