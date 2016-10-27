@@ -1,20 +1,19 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { Router, Route, IndexRoute, hashHistory, browserHistory } from 'react-router'
+import RouterConfig from './route.config'
 
-import Home from './container/home/index';
+import reducer from './reducers/home.js'
+import { createStore, applyMiddleware } from 'redux'
+import { Provider } from 'react-redux'
+import createLogger from 'redux-logger'
+import thunk from 'redux-thunk'
 
-let container = document.getElementById('app')
-
-const router = (
-    <Router history={browserHistory}>
-        <Route path="/">
-            <IndexRoute component={Home}></IndexRoute>
-            <Route path="home" component={Home}></Route>
-        </Route>
-    </Router>
-);
+const container = document.getElementById('app')
+const logger = createLogger()
+let store = createStore(reducer, applyMiddleware(thunk, logger));
 
 render(
-    router
+    <Provider store={store}>
+        {RouterConfig}
+    </Provider>
 , container)
