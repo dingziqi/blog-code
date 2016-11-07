@@ -2,8 +2,16 @@ import React from 'react'
 import style from './index.scss'
 import Inner from './Inner'
 
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { dispatchA } from '../../actions/home'
+import * as actions from '../../actions/home'
+
+function creatorA(){
+    return {
+        type: 'A',
+        data: 'B'
+    }
+}
 
 class Home extends React.Component{
     constructor(){
@@ -18,9 +26,17 @@ class Home extends React.Component{
     }
 
     click(){
-        this.props.dispatch(dispatchA()).then(() => {
-            console.log('done')
-        })
+        // dispatchA();
+        // console.log(dispatchA())
+        console.dir(this.props.actions.dispatchA())
+    }
+
+    componentWillMount(){
+        let { dispatch } = this.props;
+        let test = bindActionCreators(creatorA, dispatch)
+        this.click()
+
+        console.log(this.props)
     }
 
     getChildContext(){
@@ -30,35 +46,22 @@ class Home extends React.Component{
     }
 
     render(){
-        this.click()
-        let arr = 'bobwobwovbewovqdwqjnocqwowqow'.split('');
         return(
-            <div className="wrapper">
-                <div>test</div>
-                <div className="main">
-                    <ul className="list">
-                        {
-                            arr.map((item, index) => {
-                                return (
-                                    <li>
-                                        {item}
-                                        <p>{index}</p>
-                                    </li>
-                                )
-                            })
-                        }
-                    </ul>
-                </div>
-                <div>test</div>
-            </div>
+            <div></div>
         )
     }
 }
 
-export default connect((state) => {
-    console.log('selector')
+function mapState(state){
     return state
-})(Home)
+}
+function mapReducer(dispatch){
+    return {
+        actions: bindActionCreators(actions, dispatch)
+    }
+}
+
+export default connect(mapState, mapReducer)(Home)
 
 
 Home.childContextTypes = {
