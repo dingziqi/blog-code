@@ -1,0 +1,19 @@
+@import './_index.scss';
+@import './font.scss';
+
+body, ul, li, p{
+    margin: 0;
+    padding: 0;
+}
+
+body, input, textarea{
+    color: $font-color-nomal;
+    font-size: 12px;
+    line-height: 1.5;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;
+}
+
+a{
+    color: $font-color-nomal;
+    text-decoration: none;
+}

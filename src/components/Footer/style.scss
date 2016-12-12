@@ -1,0 +1,15 @@
+@import '../../asserts/css/_index.scss';
+
+#Footer{
+    text-align: center;
+    color: $font-color-gray;
+    padding: 12px 0;
+    background-color: $bg-color-light;
+
+    a{
+        color: darken($font-color-gray, 10%);
+        margin: 0 2px;
+        border-bottom: 1px dotted $font-color-gray;
+    }
+
+}

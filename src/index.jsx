@@ -8,6 +8,8 @@ import { Provider } from 'react-redux'
 import createLogger from 'redux-logger'
 import thunk from 'redux-thunk'
 
+import Style from './asserts/css/base.scss';
+
 const container = document.getElementById('app')
 const logger = createLogger()
 let store = createStore(reducer, applyMiddleware(thunk, logger));

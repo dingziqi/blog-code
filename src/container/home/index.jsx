@@ -1,6 +1,9 @@
 import React from 'react'
 import style from './index.scss'
 import Inner from './Inner'
+import Footer from '../../components/Footer/index';
+import Header from '../../components/Header/index';
+
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -47,7 +50,10 @@ class Home extends React.Component{
 
     render(){
         return(
-            <div></div>
+            <div>
+                <Header></Header>
+                <Footer></Footer>
+            </div>
         )
     }
 }
