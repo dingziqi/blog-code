@@ -1,6 +1,19 @@
 @import '../../asserts/css/_index.scss';
 
 .Header{
-    height: 80px;
+    height: 60px;
+    line-height: 60px;
     background-color: $theme-color;
+
+    .icon-menu{
+        color: #fff;
+        font-size: 24px;
+        margin: 0 24px;
+        cursor: pointer;
+        transition: color .5s ease-in-out;
+
+        &:hover{
+            color: darken(#fff, 10%);
+        }
+    }
 }

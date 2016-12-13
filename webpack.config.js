@@ -2,6 +2,8 @@ var webpack = require('webpack');
 var path = require('path');
 var CWD = process.cwd();
 
+console.log(CWD)
+
 module.exports = {
     entry: {
         index: './src/index',
@@ -15,8 +17,9 @@ module.exports = {
     module: {
         loaders: [
             {test: /\.(js|jsx)$/, exclude: /node_modules/, loader: 'babel'},
-            {test: /\.scss$/, exclude: /node_modules/, loader: 'style!css!sass' },
-            {test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/, loader: 'url-loader?limit=50000&name=[path][name].[ext]'}
+            {test: /\.(scss|css)$/, loader: 'style!css!sass' },
+            {test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/, loader: 'url-loader?limit=50000&name=[path][name].[ext]'},
+            {test: /\.md$/, loader: 'html!markdown'}
         ]
     },
     plugins: [
@@ -30,5 +33,6 @@ module.exports = {
         inline: true,
         hot: true
     },
+    context: path.join(CWD)
     // devTools: 'source-map'
 }

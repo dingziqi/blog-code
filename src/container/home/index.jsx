@@ -9,6 +9,10 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as actions from '../../actions/home'
 
+import html from '../../md/test.md';
+import hljs from 'highlight.js';
+import hlStyle from '../../../node_modules//highlight.js/styles/atom-one-dark.css';
+
 function creatorA(){
     return {
         type: 'A',
@@ -41,6 +45,12 @@ class Home extends React.Component{
 
         console.log(this.props)
     }
+    componentDidMount(){
+        var code = document.querySelector('pre');
+        hljs.highlightBlock(code);
+        console.log(hljs)
+        console.log(code)
+    }
 
     getChildContext(){
         return {
@@ -52,6 +62,8 @@ class Home extends React.Component{
         return(
             <div>
                 <Header></Header>
+                <div className="artical" dangerouslySetInnerHTML={{__html: html}}>
+                </div>
                 <Footer></Footer>
             </div>
         )

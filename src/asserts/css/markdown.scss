@@ -1,0 +1,41 @@
+.artical{
+    padding: 12px 24px;
+    max-width: 1024px;
+    min-width: 768px;
+
+    blockquote{
+        background-color: #f2f2f2;
+        border-left: 4px solid #ddd;
+        padding: 4px 12px;
+        margin: 6px 6px;
+    }
+
+    h1{
+        margin: 6px 6px;
+        font-size: 24px;
+    }
+
+    code{
+        background-color: #ddd;
+        border-radius: 2px;
+        padding: 0 2px;
+        margin: 0 4px;
+    }
+
+    .hljs>code{
+        background-color: inherit;
+        border-radius: 0;
+        padding: initial;;
+        margin: initial;
+
+    }
+
+    p{
+        margin: 18px 0;
+    }
+
+    img{
+        margin: 12px auto;
+        display: block;
+    }
+}
