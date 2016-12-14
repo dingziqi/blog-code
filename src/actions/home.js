@@ -1,14 +1,20 @@
-function actionA(){
+function receive_artical(list){
     return {
-        type: 'A',
-        data: 'A'
+        type: 'RECEIVE_ARTICAL_LIST',
+        list
     }
 }
 
-export function dispatchA(){
+export function fetchArtical(){
     return dispatch => {
-        return new Promise(resolve => {
-            resolve(dispatch(actionA()))
+        return fetch('./dist/cat.json')
+        .then(resp => {
+            return resp.text();
+        })
+        .then(data => {
+            if(data instanceof Array || true){
+                dispatch(receive_artical(JSON.parse(data)))
+            }
         })
     }
 }

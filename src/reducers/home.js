@@ -1,18 +1,14 @@
 const initialState = {
-    test: 'tset'
+    list: []
 }
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case 'A':
-            return Object.assign({}, state, {
-                test: 'A'
-            })
-            break
-        case 'B':
-            return Object.assign({}, state, {
-                test: 'B'
-            })
+        case 'RECEIVE_ARTICAL_LIST':
+            return {
+                ...state,
+                list: action.list
+            }
         default:
             return state
     }

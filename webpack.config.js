@@ -19,7 +19,8 @@ module.exports = {
             {test: /\.(js|jsx)$/, exclude: /node_modules/, loader: 'babel'},
             {test: /\.(scss|css)$/, loader: 'style!css!sass' },
             {test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/, loader: 'url-loader?limit=50000&name=[path][name].[ext]'},
-            {test: /\.md$/, loader: 'html!markdown'}
+            {test: /\.md$/, loader: 'html!markdown'},
+            {test: /\.json$/, loader: 'json'}
         ]
     },
     plugins: [
