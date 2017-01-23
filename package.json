@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "gulp build && webpack",
+    "dev": "gulp build && webpack-dev-server"
   },
   "repository": {
     "type": "git",
@@ -34,6 +36,7 @@
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-0": "^6.5.0",
     "css-loader": "^0.25.0",
+    "del": "^2.2.2",
     "file-loader": "^0.9.0",
     "gulp": "^3.9.1",
     "gulp-util": "^3.0.7",

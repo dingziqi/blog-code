@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Link } from 'react-router';
 
 import * as actions from '../../actions/home';
 import style from './index.scss';
@@ -18,20 +19,21 @@ class Home extends React.Component{
 
     render(){
         return(
-            <div>
+            <section id="home-box">
                 <Header></Header>
                 <ul>
-                    { this.props.home.list.map(item => {
+                    { this.props.home.list.map((item, index) => {
                         return (
-                            <li className="artical-item">
-                                <p className="title">{item.title}</p>
+                            <li className="artical-item" key={index}>
+                                <Link to={`/article/${item.path}`}><p className="title">{item.title}</p></Link>
+                                <p className="info"><span>{item.date}</span></p>
                                 <div>{item.pre}</div>
                             </li>
                         )
                     })}
                 </ul>
                 <Footer></Footer>
-            </div>
+            </section>
         )
     }
 }

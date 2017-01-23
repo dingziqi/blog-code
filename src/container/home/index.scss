@@ -1,14 +1,22 @@
 @import '../../asserts/css/_vars.scss';
 
-.artical-item{
-    max-width: 1024px;
-    padding: 24px 12px;
-    margin: 24px 12px;
-    box-shadow: 0 1px 5px rgba(0, 0, 0, .2);
-    background-color: $bg-color-light;
-}
 
-.title{
-    font-size: 16px;
-    margin: 12px 0;
+#home-box{
+    .artical-item{
+        max-width: 1024px;
+        padding: 24px 12px;
+        margin: 24px auto;
+    }
+
+    .title{
+        font-size: 16px;
+        margin: 0 0;
+        font-weight: bold;
+    }
+
+    .info{
+        color: #999;
+        margin: 4px 0 12px;
+    }
+
 }
