@@ -23,7 +23,7 @@ var md = require('markdown-it')({
 
 
 
-export default class Artical extends Component{
+export default class Article extends Component{
 
     constructor(...args){
         super(...args);
@@ -38,8 +38,8 @@ export default class Artical extends Component{
             .then(resp => {return resp.text()})
             .then(text => {
                 this.setState({loading: false})
-                this.refs.artical.innerHTML = md.render(text.split('---')[1].replace('<!--more-->', ''));
-                this.refs.artical.querySelectorAll('pre').forEach(code => {
+                this.refs.article.innerHTML = md.render(text.split('---')[1].replace('<!--more-->', ''));
+                this.refs.article.querySelectorAll('pre').forEach(code => {
                     hljs.highlightBlock(code);
                 })
             })
@@ -47,13 +47,12 @@ export default class Artical extends Component{
     }
 
     render(){
+        const { location } = this.props;
         return (
             <div>
-                <Header />
-                <div className="artical" ref="artical">
+                <div className="article" ref="article"></div>
 
-                </div>
-                <Footer />
+            	<div className="ds-thread" data-thread-key={location.pathname} data-title={location.pathname} data-url={location.pathname}></div>
             </div>
         )
     }

@@ -20,7 +20,6 @@ class Home extends React.Component{
     render(){
         return(
             <section id="home-box">
-                <Header></Header>
                 <ul>
                     { this.props.home.list.map((item, index) => {
                         return (
@@ -32,7 +31,6 @@ class Home extends React.Component{
                         )
                     })}
                 </ul>
-                <Footer></Footer>
             </section>
         )
     }

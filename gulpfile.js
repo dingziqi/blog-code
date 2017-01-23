@@ -4,7 +4,7 @@ var gutil = require('gulp-util');
 var PluginError = gutil.PluginError;
 var streamify = require('gulp-streamify');
 var fs = require('fs');
-var del = require('del');
+require('shelljs/global');
 
 
 var regs = {
@@ -14,18 +14,17 @@ var regs = {
     path: new RegExp(/path:(.*)/)
 }
 
-
 function buildTool(){
     var result = [];
     var stream = through.obj(function(file, enc, cb){
         if(file.isBuffer()){
-            var contents = String(file.contents).split('---');
+            var [meta, content] = String(file.contents).split('---');
             result.push({
-                title: contents[0].match(regs.title)[1].trim(),
-                date: contents[0].match(regs.date)[1].trim(),
-                categories: contents[0].match(regs.categories)[1].trim().replace(/\"/g, ''),
-                pre: contents[1].split('<!--more-->')[0].trim(),
-                path: contents[0].match(regs.path)[1].trim()
+                title: meta.match(regs.title)[1].trim(),
+                date: meta.match(regs.date)[1].trim(),
+                categories: meta.match(regs.categories)[1].trim().replace(/\"/g, ''),
+                pre: content.split('<!--more-->')[0].trim(),
+                path: meta.match(regs.path)[1].trim()
             })
         }
 
@@ -40,11 +39,8 @@ function buildTool(){
     return stream;
 }
 
-gulp.task('clear', () => {
-    del('dist/md/**');
-});
-
-gulp.task('build', ['clear'], () => {
+gulp.task('build', () => {
+    rm('-rf', 'dist/md');
     return gulp.src('./src/md/**/*.md')
     .pipe(buildTool())
     .pipe(gulp.dest('dist/md'));
