@@ -10,9 +10,15 @@ import thunk from 'redux-thunk';
 
 import Style from './asserts/css/base.scss';
 
+let middleware = [thunk];
+
+if(process.env.NODE_ENV !== 'development'){
+    const logger = createLogger();
+    middleware.push(logger);
+}
+
 const container = document.getElementById('app');
-const logger = createLogger();
-let store = createStore(reducer, applyMiddleware(thunk, logger));
+let store = createStore(reducer, applyMiddleware(...middleware));
 
 
 render(

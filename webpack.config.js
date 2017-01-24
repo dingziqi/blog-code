@@ -2,8 +2,6 @@ var webpack = require('webpack');
 var path = require('path');
 var CWD = process.cwd();
 
-console.log(CWD)
-
 module.exports = {
     entry: {
         index: './src/index',
@@ -25,7 +23,13 @@ module.exports = {
     },
     plugins: [
         new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.optimize.UglifyJsPlugin(),
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+            }
+        })
     ],
     resolve: {
         extensions: ['', '.js', '.jsx']
