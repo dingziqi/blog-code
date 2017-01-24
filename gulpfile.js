@@ -14,17 +14,19 @@ var regs = {
     path: new RegExp(/path:(.*)/)
 }
 
+
 function buildTool(){
     var result = [];
+
     var stream = through.obj(function(file, enc, cb){
         if(file.isBuffer()){
-            var [meta, content] = String(file.contents).split('---');
+            var contents = String(file.contents).split('---');
             result.push({
-                title: meta.match(regs.title)[1].trim(),
-                date: meta.match(regs.date)[1].trim(),
-                categories: meta.match(regs.categories)[1].trim().replace(/\"/g, ''),
-                pre: content.split('<!--more-->')[0].trim(),
-                path: meta.match(regs.path)[1].trim()
+                title: contents[0].match(regs.title)[1].trim(),
+                date: contents[0].match(regs.date)[1].trim(),
+                categories: contents[0].match(regs.categories)[1].trim().replace(/\"/g, ''),
+                pre: contents[1].split('<!--more-->')[0].trim(),
+                path: contents[0].match(regs.path)[1].trim()
             })
         }
 
@@ -33,14 +35,20 @@ function buildTool(){
     })
 
     stream.on('end', ()=>{
-        fs.writeFile('./dist/cat.json', JSON.stringify(result));
+        fs.access('./dist/cat.json', err => {
+            if(err){
+                mkdir('-p', './dist');
+            }
+
+            rm('./dist/cat.json');
+            fs.writeFile('./dist/cat.json', JSON.stringify(result));
+        });
     })
 
     return stream;
 }
 
 gulp.task('build', () => {
-    rm('-rf', 'dist/md');
     return gulp.src('./src/md/**/*.md')
     .pipe(buildTool())
     .pipe(gulp.dest('dist/md'));
