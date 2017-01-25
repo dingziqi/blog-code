@@ -2,10 +2,26 @@ var webpack = require('webpack');
 var path = require('path');
 var CWD = process.cwd();
 
+var NODE_ENV = JSON.stringify(process.env.NODE_ENV);
+
+var plugins = [
+    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.DefinePlugin({
+        'process.env': {
+            NODE_ENV: NODE_ENV
+        }
+    })
+];
+
+if(NODE_ENV === 'production'){
+    plugins.push(new webpack.optimize.UglifyJsPlugin())
+}
+
 module.exports = {
     entry: {
+        vendor: ['whatwg-fetch', 'react', 'react-dom'],
         index: './src/index',
-        vendor: ['react', 'react-dom']
     },
     output: {
         path: './dist',
@@ -21,16 +37,7 @@ module.exports = {
             {test: /\.json$/, loader: 'json'}
         ]
     },
-    plugins: [
-        new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.optimize.UglifyJsPlugin(),
-        new webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: JSON.stringify(process.env.NODE_ENV)
-            }
-        })
-    ],
+    plugins: plugins,
     resolve: {
         extensions: ['', '.js', '.jsx']
     },

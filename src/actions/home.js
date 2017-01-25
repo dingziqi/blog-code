@@ -1,3 +1,5 @@
+// import 'whatwg-fetch';
+
 function receive_artical(list){
     return {
         type: 'RECEIVE_ARTICAL_LIST',

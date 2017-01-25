@@ -5,7 +5,7 @@ export default class Header extends Component{
     render(){
         return (
             <div className="Header">
-                <span className="iconfont icon-menu"></span>
+                <p className="title">临时工</p>
             </div>
         )
     }

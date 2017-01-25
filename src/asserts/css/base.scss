@@ -14,6 +14,14 @@ body, input, textarea{
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;
 }
 
+html{
+    height: 100%;
+}
+body{
+    min-height: 100%;
+    position: relative;
+}
+
 a{
     color: $font-color-nomal;
     text-decoration: none;
@@ -21,4 +29,9 @@ a{
 
 li{
     list-style: none;
+}
+
+#app{
+    overflow-y: hidden;
+    padding-bottom: 24px;
 }

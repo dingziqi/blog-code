@@ -43,7 +43,10 @@ export default class Article extends Component{
                     hljs.highlightBlock(code);
                 })
             })
+    }
 
+    componentDidMount(){
+        DUOSHUO.EmbedThread(document.getElementById('comments'));
     }
 
     render(){
@@ -52,7 +55,7 @@ export default class Article extends Component{
             <div>
                 <div className="article" ref="article"></div>
 
-            	<div className="ds-thread" data-thread-key={location.pathname} data-title={location.pathname} data-url={location.pathname}></div>
+            	<div id="comments" className="ds-thread" data-thread-key={location.pathname} data-title={location.pathname} data-url={location.pathname}></div>
             </div>
         )
     }
