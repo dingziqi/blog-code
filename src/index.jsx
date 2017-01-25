@@ -12,7 +12,7 @@ import Style from './asserts/css/base.scss';
 
 let middleware = [thunk];
 
-if(process.env.NODE_ENV !== 'development'){
+if(process.env.NODE_ENV === 'development'){
     const logger = createLogger();
     middleware.push(logger);
 }
