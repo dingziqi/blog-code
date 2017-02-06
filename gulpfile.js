@@ -49,7 +49,7 @@ function buildTool(){
 }
 
 gulp.task('build', () => {
-    return gulp.src('./src/md/**/*.md')
+    return gulp.src('./src/blog-md/**/*.md')
     .pipe(buildTool())
     .pipe(gulp.dest('dist/md'));
 })

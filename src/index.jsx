@@ -10,6 +10,7 @@ import thunk from 'redux-thunk';
 
 import Style from './asserts/css/base.scss';
 
+
 let middleware = [thunk];
 
 if(process.env.NODE_ENV === 'development'){

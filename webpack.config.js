@@ -2,6 +2,9 @@ var webpack = require('webpack');
 var path = require('path');
 var CWD = process.cwd();
 
+// var Dashboard = require('webpack-dashboard');
+// var DashboardPlugin = require('webpack-dashboard/plugin');
+// var dashboard = new Dashboard();
 var NODE_ENV = JSON.stringify(process.env.NODE_ENV);
 
 var plugins = [
@@ -11,11 +14,13 @@ var plugins = [
         'process.env': {
             NODE_ENV: NODE_ENV
         }
-    })
+    }),
 ];
 
-if(NODE_ENV === 'production'){
-    plugins.push(new webpack.optimize.UglifyJsPlugin())
+if(NODE_ENV !== 'development'){
+    plugins.push(new webpack.optimize.UglifyJsPlugin());
+}else{
+    // plugins.push(new DashboardPlugin(dashboard.setData));
 }
 
 module.exports = {
@@ -43,7 +48,8 @@ module.exports = {
     },
     devServer:{
         inline: true,
-        hot: true
+        hot: true,
+        quiet: true
     },
     context: path.join(CWD)
     // devTools: 'source-map'

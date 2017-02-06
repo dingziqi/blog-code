@@ -6,7 +6,7 @@ import hlStyle from '../../../node_modules//highlight.js/styles/atom-one-dark.cs
 import Header from '../../components/Header/index';
 import Footer from '../../components/Footer/index';
 
-var hljs = require('highlight.js'); // https://highlightjs.org/
+var hljs = require('../../vendor/highlight/highlight.pack.js'); // https://highlightjs.org/
 
 // Actual default values
 var md = require('markdown-it')({
