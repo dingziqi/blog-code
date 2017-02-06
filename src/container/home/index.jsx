@@ -21,15 +21,19 @@ class Home extends React.Component{
         return(
             <section id="home-box">
                 <ul>
-                    { this.props.home.list.map((item, index) => {
-                        return (
-                            <li className="artical-item" key={index}>
-                                <Link to={`/article/${item.path}`}><p className="title">{item.title}</p></Link>
-                                <p className="info"><span>{item.date}</span></p>
-                                <div>{item.pre}</div>
-                            </li>
-                        )
-                    })}
+                    { this.props.home.list
+                        .sort((pre, next) => {
+                            return new Date(next.date) - new Date(pre.date)
+                        })
+                        .map((item, index) => {
+                            return (
+                                <li className="artical-item" key={index}>
+                                    <Link to={`/article/${item.path}`}><p className="title">{item.title}</p></Link>
+                                    <p className="info"><span>{item.date}</span></p>
+                                    <div>{item.pre}</div>
+                                </li>
+                            )
+                        })}
                 </ul>
             </section>
         )

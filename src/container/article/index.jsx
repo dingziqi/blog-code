@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import Style from './style.scss';
-// import hljs from 'highlight.js';
 import hlStyle from '../../../node_modules//highlight.js/styles/atom-one-dark.css';
 
 import Header from '../../components/Header/index';
 import Footer from '../../components/Footer/index';
 
-var hljs = require('../../vendor/highlight/highlight.pack.js'); // https://highlightjs.org/
-
-// Actual default values
 var md = require('markdown-it')({
   highlight: function (str, lang) {
     if (lang && hljs.getLanguage(lang)) {
@@ -17,7 +13,7 @@ var md = require('markdown-it')({
       } catch (__) {}
     }
 
-    return ''; // use external default escaping
+    return '';
   }
 });
 

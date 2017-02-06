@@ -17,7 +17,7 @@ var plugins = [
     }),
 ];
 
-if(NODE_ENV !== 'development'){
+if(NODE_ENV !== JSON.stringify('development')){
     plugins.push(new webpack.optimize.UglifyJsPlugin());
 }else{
     // plugins.push(new DashboardPlugin(dashboard.setData));
@@ -44,7 +44,10 @@ module.exports = {
     },
     plugins: plugins,
     resolve: {
-        extensions: ['', '.js', '.jsx']
+        extensions: ['', '.js', '.jsx'],
+        alias: {
+            'hljs': '/src/vendor/highlight/highlight.pack.js'
+        }
     },
     devServer:{
         inline: true,
