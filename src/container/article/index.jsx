@@ -29,7 +29,8 @@ export default class Article extends Component{
     }
 
     componentWillMount(){
-        var path = 'dist/md/' + this.props.params.path + '.md';
+        var path = 'dist/md/' + decodeURIComponent(this.props.params.path) + '.md';
+        console.log(path)
         fetch(path)
             .then(resp => {return resp.text()})
             .then(text => {

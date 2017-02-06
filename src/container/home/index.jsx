@@ -28,7 +28,7 @@ class Home extends React.Component{
                         .map((item, index) => {
                             return (
                                 <li className="artical-item" key={index}>
-                                    <Link to={`/article/${item.path}`}><p className="title">{item.title}</p></Link>
+                                    <Link to={`/article/${encodeURIComponent(item.path)}`}><p className="title">{item.title}</p></Link>
                                     <p className="info"><span>{item.date}</span></p>
                                     <div>{item.pre}</div>
                                 </li>
