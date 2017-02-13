@@ -19,7 +19,32 @@
     }
 
     .title{
-        text-align: center;
+        padding: 0 24px;
+        text-align: left;
         font-size: 24px;
+    }
+
+    .search-box{
+        position: relative;
+        float: right;
+        background-color: rgba(255 , 255, 255, .1);
+        height: 30px;
+        line-height: 1;
+        margin: 15px 0;
+        padding-right: 20px;
+
+        >input{
+            border: none;
+            outline: none;
+            background-color: transparent;
+            color: #eee;
+            padding: 6px 12px;
+            border-radius: 2px;
+            width: 160px;
+        }
+
+        .icon-search{
+            cursor: pointer;
+        }
     }
 }
