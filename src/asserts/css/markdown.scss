@@ -38,4 +38,19 @@
         margin: 12px auto;
         display: block;
     }
+
+    .lazy-img{
+        min-height: 100px;
+        min-width: 100px;
+        position: relative;
+    }
+
+    .icon-img{
+        font-size: 64px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0);
+        z-index: -1;
+    }
 }
