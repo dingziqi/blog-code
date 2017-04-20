@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actions from '../../actions/home';
+
 import Style from './style.scss';
 import hlStyle from '../../../node_modules/highlight.js/styles/atom-one-dark.css';
 import LazyLoad from '../../utils/LazyLoad.js';
@@ -28,8 +32,7 @@ md.renderer.rules.image = function(tokens, idx, options, env, self){
 }
 
 
-
-export default class Article extends Component{
+class Article extends Component{
 
     constructor(...args){
         super(...args);
@@ -39,18 +42,15 @@ export default class Article extends Component{
     }
 
     componentWillMount(){
-        var path = 'dist/md/' + decodeURIComponent(this.props.params.path) + '.md';
-        fetch(path)
-            .then(resp => {return resp.text()})
-            .then(text => {
-                this.setState({loading: false})
-                this.refs.article.innerHTML = md.render(text.split('---')[1].replace('<!--more-->', ''));
-                this.refs.article.querySelectorAll('pre').forEach(code => {
-                    hljs.highlightBlock(code);
-                });
+        let id = decodeURIComponent(this.props.params.path);
+        this.props.actions.fetchArticle(id).then(resp => {
+            this.refs.article.innerHTML = resp;
+            this.refs.article.querySelectorAll('pre').forEach(code => {
+                hljs.highlightBlock(code);
+            });
 
-                LazyLoad();
-            })
+            LazyLoad();
+        })
     }
 
     componentDidMount(){
@@ -68,3 +68,5 @@ export default class Article extends Component{
         )
     }
 }
+
+export default connect((state)=> state, dispatch => {return {actions: bindActionCreators(actions, dispatch)}})(Article);

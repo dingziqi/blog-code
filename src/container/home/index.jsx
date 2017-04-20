@@ -14,7 +14,7 @@ class Home extends React.Component{
     }
 
     componentWillMount(){
-        this.props.actions.fetchArtical()
+        this.props.actions.fetchCategory()
     }
 
     render(){
@@ -29,8 +29,8 @@ class Home extends React.Component{
                             return (
                                 <li className="artical-item" key={index}>
                                     <p className="title"><Link to={`/article/${encodeURIComponent(item.path)}`}>{item.title}</Link></p>
-                                    <p className="info"><span>{item.date}</span></p>
-                                    <div>{item.pre}</div>
+                                    <p className="info"><span>{item.date.split('T')[0]}</span></p>
+                                    <div>{item.desc}</div>
                                 </li>
                             )
                         })}

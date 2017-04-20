@@ -1,4 +1,5 @@
 // import 'whatwg-fetch';
+import conf from '../conf.js';
 
 function receive_artical(list){
     return {
@@ -7,9 +8,9 @@ function receive_artical(list){
     }
 }
 
-export function fetchArtical(){
+export function fetchCategory(){
     return dispatch => {
-        return fetch('./dist/cat.json')
+        return fetch(`${conf.host}/category`)
         .then(resp => {
             return resp.text();
         })
@@ -17,6 +18,15 @@ export function fetchArtical(){
             if(data instanceof Array || true){
                 dispatch(receive_artical(JSON.parse(data)))
             }
+        })
+    }
+}
+
+export function fetchArticle(id){
+    return dispatch => {
+        return fetch(`${conf.host}/article/${id}`)
+        .then(resp => {
+            return resp.text();
         })
     }
 }
