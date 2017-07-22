@@ -3,3 +3,33 @@
     padding: 0 24px;
     margin: 0 auto;
 }
+
+
+.container{
+    max-width: 768px;
+    margin: 0 auto;
+}
+
+.meta-wrapper{
+    border-bottom: 1px solid #e5e5e5;
+    padding-bottom: 32px;
+}
+.article-title{
+    font-size: 28px;
+    text-align: center;
+    margin: 32px 0 16px 0;
+}
+.meta-info{
+    text-align: center;
+    color: #999;
+}
+.article-tag{
+    display: inline-block;
+    border-radius: 2px;
+    padding: 2px 6px;
+    line-height: 1;
+    margin-left: 6px;
+    margin-top: -12px;
+    background-color: #aaa;
+    color: #fff;
+}
